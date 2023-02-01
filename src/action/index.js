@@ -1,20 +1,23 @@
-const AddTODO = () => {
+export const AddTODO = (data) => {
     return{
-        type:"ADDTODO"
+        type:"ADDTODO",
+        payload : data
     }
 }
-const UpdateTODO = () => {
+export const UpdateTODO = () => {
     return{
         type:"UPDATETODO"
     }
 }
-const RemoveTODO = () => {
+export const RemoveTODO = (data) => {
+    console.log(data)
     return{
-        type:"REMOVETODO"
+        type:"REMOVETODO",
+        payload : data
     }
 }
-const DeleteTODO = () => {
+export const DeleteAllTODO = () => {
     return{
-        type:"DELETETODO"
+        type:"DELETEALLTODO"
     }
 }

@@ -1,20 +1,29 @@
-// https://www.youtube.com/watch?v=-q5sv95BPYw
 const initialState = {
-    list : []
-}
+  list: [],
+};
 
-const TodoReducer = (state = initialState , action) => {
-    if(action.type === "ADDTODO"){
+const TodoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "ADDTODO":
+      console.log(action.payload);
+      return {
+          ...state,
+          list: [...state.list, action.payload],
+        };
         
-        return{
-            ...state,
-            data : [
-                ...state.list,
-                {
-                    data:data
-                }
-            ]
-        }
-    }
-    return state;
-}
+        case "DELETEALLTODO":
+      return (state.list = []);
+
+    case "REMOVETODO":
+        let list = state.list.filter((filterArray) => {
+            return filterArray.id !== action.payload;
+        });
+
+      return {...state,list}
+      
+    default:
+      return state;
+  }
+};
+
+export default TodoReducer;
