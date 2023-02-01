@@ -4,11 +4,14 @@ export const AddTODO = (data) => {
         payload : data
     }
 }
-export const UpdateTODO = () => {
+export const UpdateTODO = (data) => {
+    console.log(data)
     return{
-        type:"UPDATETODO"
+        type:"UPDATETODO",
+        payload : data
     }
 }
+
 export const RemoveTODO = (data) => {
     console.log(data)
     return{
@@ -16,6 +19,7 @@ export const RemoveTODO = (data) => {
         payload : data
     }
 }
+
 export const DeleteAllTODO = () => {
     return{
         type:"DELETEALLTODO"

@@ -8,7 +8,29 @@ const Todo = () => {
   const myState = useSelector((state) => state.TodoReducer);
   const dispatch = useDispatch();
 
+
+
+  const UpdateChangedata = (item,id) => {
+    setSelectInput(item)   
+  }
+
+  
+  // const submitData = (item,id) => {
+  //   let updatearr=[]
+  //   myState.list.map((data)=>{
+  //     console.log(id);
+  //     if(data.id==id){
+  //       updatearr.push({item:item,id:id})
+  //     }
+  //     else{
+  //       updatearr.push(data)
+  //     }
+  //   }) 
+  // }
+
+
   return (
+    // 
     <>
       <div id="myDIV" className="header">
         <h2>My To Do List</h2>
@@ -23,7 +45,7 @@ const Todo = () => {
         />
         
         <button
-          onClick={() => {dispatch(AddTODO({item:SelectInput,id:new Date().getTime().toString()}));setSelectInput("")}}
+          onClick={() => {SelectInput.length!==0 && dispatch(AddTODO({item:SelectInput,id:new Date().getTime().toString()}));setSelectInput("")}}
           className="addBtn" > Add
         </button>
 
@@ -31,11 +53,12 @@ const Todo = () => {
         
       </div>
       {myState.list?.map((value) => {
+        const {item,id} = value;
         return (
-          <ul id="myUL" key={value.id}>
-            <li>{value.item} 
-            <span onClick={ () => dispatch(RemoveTODO(value.id)) } className="close" > x </span>
-            <span onClick={ () => dispatch(UpdateTODO(value.id)) } className="opens" > Edit </span>
+          <ul id="myUL" key={id}>
+            <li>{item} 
+            <span onClick={ () => dispatch(RemoveTODO(id)) } className="close" > x </span>
+            <span onClick={ () => dispatch(UpdateTODO()) } className="opens" > Edit </span>
             </li>  
           </ul>
         );
