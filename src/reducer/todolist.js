@@ -11,23 +11,33 @@ const TodoReducer = (state = initialState, action) => {
         list: [...state.list, action.payload],
       };
 
-    case "DELETEALLTODO" :
-      return {
+      case "DELETEALLTODO":
+        return {
         list: [],
       };
-
-    case "REMOVETODO" :
-      let list = state.list.filter((filterArray) => {
+      
+    case "REMOVETODO":
+      let newList = state.list.filter((filterArray) => {
         return filterArray.id !== action.payload;
       });
 
-      return { ...state, list };
+      return {
+        ...state,
+        list: newList,
+      };
 
-    case "UPDATETODO" :
-      let lista = state.list.find((filterArray) => {
-        return filterArray.id === action.payload;
+      case "UPDATETODO":
+      console.log(state.list.id);
+      console.log(action.payload.id)
+      console.log(action.payload.item)
+      let lista = state.list.filter((filterArray)=>{
+        
+        if(filterArray.id === action.payload.id){
+          return filterArray.item = action.payload.item
+        }
+        
       });
-      console.log(lista)
+      console.log(lista);
 
     default:
       return state;
